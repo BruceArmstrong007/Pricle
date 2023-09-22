@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { APIEndpoint } from '../../utils/api.endpoints';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { UploadProfile } from 'src/app/stores/user/user.model';
 
 @Injectable({
