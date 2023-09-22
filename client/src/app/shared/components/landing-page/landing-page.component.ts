@@ -113,7 +113,7 @@ export class LandingPageComponent implements AfterViewInit {
   loadGLTF() {
     const loader = new GLTFLoader();
     loader.load(
-      'assets/earth/earth1.glb',
+      'assets/earth/earth.glb',
       (gltf) => {
         this.earthMesh = gltf.scene;
         this.scene.add(this.earthMesh);
