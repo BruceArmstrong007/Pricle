@@ -1,0 +1,834 @@
+{
+	"info": {
+		"_postman_id": "9871361e-64e0-43ba-b6f5-59a17ae04437",
+		"name": "Pricle-Mono",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19763318",
+		"_collection_link": "https://planetary-comet-540228.postman.co/workspace/Personal~30e99cb6-5d24-4d73-b4ee-b00be860d38a/collection/19763318-9871361e-64e0-43ba-b6f5-59a17ae04437?action=share&source=collection_link&creator=19763318"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"bruce0\",\r\n    \"password\": \"armstrong1997\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"bruce0\",\r\n    \"password\": \"armstrong1997\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email Link",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"bruce.armstrong0@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/verify-email-link",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"verify-email-link"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"bruce.armstrong0@gmail.com\",\r\n    \"token\": \"5800\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/verify-email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"verify-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password Link",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"brucearmstrongofficial@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/reset-password-link",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"reset-password-link"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"brucearmstrongofficial@gmail.com\",\r\n    \"password\": \"asdaslkhdhkashdksa\",\r\n    \"confirmPassword\": \"asdaslkhdhkashdksa\",\r\n    \"token\": \"5713\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/reset-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhzsdsadzbGciOsiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NTA0MTNlYTRkYjQzMzJlYjFjYTQ2MDUiLCJ1c2VybmFtZSI6ImJydWNlIiwiZW1haWwiOiJicnVjZWFybXN0cm9uZ29mZmljaWFsQGdtYWlsLmNvbSIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2OTQ4NDAzNzksImV4cCI6MTY5NDg0MDY3OX0.ikahFgL-yARBS3V_aKyAtO6R0Mkvzk_5wz4nL90Qgfg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"bruce22\",\r\n    \"email\": \"bruce.armstrong0@gmail.com\",\r\n    \"password\": \"asdaslkhdhka2shdksa\",\r\n    \"confirmPassword\": \"asdaslkhdhka2shdksa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NGZmMjg4NjBjMDQ2ZDdhZDJiOWY1NGQiLCJ1c2VybmFtZSI6ImJydWNlMSIsImVtYWlsIjoiYnJ1Y2Vhcm1zdHJvbmdvZmZpY2lhbEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0NTA0Njg3LCJleHAiOjE2OTUxMDk0ODd9.ckccG_jiyW8nbhALAIHp7N7pOPob9vZke8aWYe92OSw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NTA0MmM3YmI3YWUwZDNjZDQ3N2JkNGQiLCJ1c2VybmFtZSI6ImJydWNlMCIsImVtYWlsIjoiYnJ1Y2UuYXJtc3Ryb25nMEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0OTI0NjMwLCJleHAiOjE2OTQ5MjQ5MzB9.KCjB9zImCI0clo5lA7g17SrILc0NpUdndJ04U5I-Ctw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Email Link",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NTA0MmM3YmI3YWUwZDNjZDQ3N2JkNGQiLCJ1c2VybmFtZSI6ImJydWNlMCIsImVtYWlsIjoiYnJ1Y2UuYXJtc3Ryb25nMEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0OTI0NjMwLCJleHAiOjE2OTQ5MjQ5MzB9.KCjB9zImCI0clo5lA7g17SrILc0NpUdndJ04U5I-Ctw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"brucearmstrongofficial@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/change-email-link",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"change-email-link"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NTA0MmM3YmI3YWUwZDNjZDQ3N2JkNGQiLCJ1c2VybmFtZSI6ImJydWNlMCIsImVtYWlsIjoiYnJ1Y2UuYXJtc3Ryb25nMEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0OTI0NjMwLCJleHAiOjE2OTQ5MjQ5MzB9.KCjB9zImCI0clo5lA7g17SrILc0NpUdndJ04U5I-Ctw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"brucearmstrongofficial@gmail.com\",\r\n    \"token\": \"34343\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/change-email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"change-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NGZmZmUwOGQwMTUwMTk0MWZiM2IwMjEiLCJ1c2VybmFtZSI6ImJydWNlMiIsImVtYWlsIjoiYnJ1Y2UuYXJtc3Ryb25nMEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0NTA1NTExLCJleHAiOjE2OTQ1MDU4MTF9.hIrPw8zGZZqvSsrso7ahhXYr-KrBSw-XouAYEzLv6-w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NGZmMjg4NjBjMDQ2ZDdhZDJiOWY1NGQiLCJ1c2VybmFtZSI6ImJydWNlMSIsImVtYWlsIjoiYnJ1Y2Vhcm1zdHJvbmdvZmZpY2lhbEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0NTA1NzU2LCJleHAiOjE2OTQ1MDYwNTZ9.EefDpoeL7Ufu3i3JdJIwWvyIweZxHwtV1e62W3F1JNw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"brucve213\",\r\n    \"bio\": \"asdaslkhdhkashdksa\",\r\n    \"username\": \"asdasd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NGZmMjg4NjBjMDQ2ZDdhZDJiOWY1NGQiLCJ1c2VybmFtZSI6ImJydWNlMSIsImVtYWlsIjoiYnJ1Y2Vhcm1zdHJvbmdvZmZpY2lhbEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0NTA1ODQyLCJleHAiOjE2OTQ1MDYxNDJ9.TrZ64iL6jEVe_naACoqeY6gXFou3hq-Wqno0vwq5eBc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"asdaslkhdhkashdksa\",\r\n    \"confirmPassword\": \"asdaslkhdhkashdksa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/reset-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NTA0MmM3YmI3YWUwZDNjZDQ3N2JkNGQiLCJ1c2VybmFtZSI6ImJydWNlMCIsImVtYWlsIjoiYnJ1Y2UuYXJtc3Ryb25nMEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0OTQzNTAxLCJleHAiOjE2OTQ5NDM4MDF9.Y8anTwtZpFRTJngNUm-YlGcXUs4Ti_XG5psB6fiDTLg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/search-users?name=bruce",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"search-users"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "bruce"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"item": [
+				{
+					"name": "Send request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NTA0MTNlYTRkYjQzMzJlYjFjYTQ2MDUiLCJ1c2VybmFtZSI6ImJydWNlIiwiZW1haWwiOiJicnVjZWFybXN0cm9uZ29mZmljaWFsQGdtYWlsLmNvbSIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2OTQ4NTIxMzksImV4cCI6MTY5NDg1MjQzOX0.f-JJ_1pttqlYoB-ldU5hIxlOj9Tw1cNr8tsLCG5ChLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contactID\" : \"65042c7bb7ae0d3cd477bd4d\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/contact/send-request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"contact",
+								"send-request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch contacts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NTA0MmM3YmI3YWUwZDNjZDQ3N2JkNGQiLCJ1c2VybmFtZSI6ImJydWNlMCIsImVtYWlsIjoiYnJ1Y2UuYXJtc3Ryb25nMEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0OTI1MzE1LCJleHAiOjE2OTQ5MjU2MTV9.FdumoMppfM96GfsfNYG9-OKQA9H1k9LD94YJY4BcZlw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/contact/fetch",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"contact",
+								"fetch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NTAwMjdmYWQ5M2MzYjMzMjRhNDYzMDAiLCJ1c2VybmFtZSI6ImJydWNlMiIsImVtYWlsIjoiYnJ1Y2UuYXJtc3Ryb25nMEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0NTA5MTE5LCJleHAiOjE2OTUxMTM5MTl9.tBbHi5_RoJM1V5_NaMTbDagHGyIyDLJLI-Jca8EjhAU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contactID\" : \"65042c7bb7ae0d3cd477bd4d\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/contact/cancel-request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"contact",
+								"cancel-request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NTA0MmM3YmI3YWUwZDNjZDQ3N2JkNGQiLCJ1c2VybmFtZSI6ImJydWNlMCIsImVtYWlsIjoiYnJ1Y2UuYXJtc3Ryb25nMEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0ODY1MzIwLCJleHAiOjE2OTQ4NjU2MjB9.va4c4wq35CCo4i4ILETUM4CunQuGBn6gpzFeb9kGYmU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contactID\" : \"650413ea4db4332eb1ca4605\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/contact/accept-request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"contact",
+								"accept-request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Decline Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NGZmMjg4NjBjMDQ2ZDdhZDJiOWY1NGQiLCJ1c2VybmFtZSI6ImJydWNlMSIsImVtYWlsIjoiYnJ1Y2Vhcm1zdHJvbmdvZmZpY2lhbEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0NTA5NTg4LCJleHAiOjE2OTQ1MDk4ODh9.ioFvKqFBgGUnb-kf8UKsZerklYc2CMt_Ny51ZYy1vk4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contactID\" : \"650413ea4db4332eb1ca4605\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/contact/decline-request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"contact",
+								"decline-request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Contact",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NGZmMjg4NjBjMDQ2ZDdhZDJiOWY1NGQiLCJ1c2VybmFtZSI6ImJydWNlMSIsImVtYWlsIjoiYnJ1Y2Vhcm1zdHJvbmdvZmZpY2lhbEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0NTA5MjM2LCJleHAiOjE2OTQ1MDk1MzZ9.THzD89up8A5AdiDucOzIKFvutry5VD6pesfXMkNr6Is",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contactID\" : \"650413ea4db4332eb1ca4605\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/contact/remove-contact",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"contact",
+								"remove-contact"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Seen Contact",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NTA0MTNlYTRkYjQzMzJlYjFjYTQ2MDUiLCJ1c2VybmFtZSI6ImJydWNlIiwiZW1haWwiOiJicnVjZWFybXN0cm9uZ29mZmljaWFsQGdtYWlsLmNvbSIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2OTUwMjc2MDEsImV4cCI6MTY5NTAyNzkwMX0.yKz37o4GcCRWye-LAC1DinBR8QO0RGfRbMn_-wrBJpw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contactID\" : \"65045e2f4184ff5525b9dd87\" ,\r\n    \"type\": \"RECEIVER\",\r\n    \"status\": \"ACCEPTED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/contact/seen-contact",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"contact",
+								"seen-contact"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Upload",
+			"item": [
+				{
+					"name": "profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NTA0MmM3YmI3YWUwZDNjZDQ3N2JkNGQiLCJ1c2VybmFtZSI6ImJydWNlMCIsImVtYWlsIjoiYnJ1Y2UuYXJtc3Ryb25nMEBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjk0ODY1MzIwLCJleHAiOjE2OTQ4NjU2MjB9.va4c4wq35CCo4i4ILETUM4CunQuGBn6gpzFeb9kGYmU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profile",
+									"type": "file",
+									"src": "/D:/professional/bruce.jpg"
+								},
+								{
+									"key": "prevFilename",
+									"value": "bruce3.jpg",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/upload/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"upload",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
