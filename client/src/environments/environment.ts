@@ -1,7 +1,7 @@
 export const environment = {
-  apiURL: 'http://localhost:3000',
-  wsURL: 'http://localhost:3000',
-  fileURL: 'http://localhost:3000',
+  apiURL: 'https://pricle.adaptable.app',
+  wsURL: 'https://pricle.adaptable.app',
+  fileURL: 'https://pricle.adaptable.app',
 
   // Server-Mono
   // apiURL: 'http://localhost:3000/api',
