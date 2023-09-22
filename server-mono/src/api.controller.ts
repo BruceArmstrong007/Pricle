@@ -1,7 +1,7 @@
 import { ApiExceptionFilter } from '@app/common';
 import { Controller, Get, UseFilters } from '@nestjs/common';
 
-@Controller('api')
+@Controller()
 @UseFilters(new ApiExceptionFilter())
 export class ApiController {
   constructor() {}
