@@ -1,0 +1,14 @@
+<p-accordion>
+  <p-accordionTab header="Change E-mail">
+    <app-change-email />
+  </p-accordionTab>
+  <p-accordionTab header="Change Password">
+    <app-change-password />
+  </p-accordionTab>
+  <p-accordionTab header="Delete Account">
+    <div class="flex justify-content-between align-items-center px-2">
+      <p>This will result in permanently deleting your account from pricle</p>
+      <p-button styleClass="p-button-raised p-button-danger p-button-small" (click)="deleteAccount()">Delete Account</p-button>
+    </div>
+  </p-accordionTab>
+</p-accordion>

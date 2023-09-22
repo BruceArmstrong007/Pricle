@@ -1,0 +1,86 @@
+<div class="w-full h-full flex flex-column p-4">
+  <div class="flex justify-content-start align-items-center">
+    <div class="relative">
+      <p-button
+        [styleClass]="
+          Routes.User.Contacts.Friends === url()
+            ? 'p-button-text p-button-rounded p-button-info p-button-sm sm:p-button'
+            : 'p-button-text p-button-rounded p-button-sm sm:p-button'
+        "
+        (click)="friends()"
+        [routerLink]="[Routes.User.Contacts.Friends]"
+      >
+        <i class="material-icons text-sm">person</i>
+        <span class="ml-2 font-bold">Friends</span>
+      </p-button>
+      <div *ngIf="acceptedCount() > 0" class="notify right-0 bottom-0">
+        {{ acceptedCount() }}
+      </div>
+    </div>
+    <p-button
+      [styleClass]="
+        Routes.User.Contacts.SentRequests === url()
+          ? 'p-button-text p-button-rounded p-button-info p-button-sm sm:p-button'
+          : 'p-button-text p-button-rounded p-button-sm sm:p-button'
+      "
+      [routerLink]="[Routes.User.Contacts.SentRequests]"
+    >
+      <i class="material-icons text-sm">contact_mail</i>
+      <span class="ml-2 font-bold">Sent Requests</span>
+    </p-button>
+    <div class="relative">
+      <p-button
+        [styleClass]="
+          Routes.User.Contacts.ReceivedRequests === url()
+            ? 'p-button-text p-button-rounded p-button-info p-button-sm sm:p-button'
+            : 'p-button-text p-button-rounded p-button-sm sm:p-button'
+        "
+        [routerLink]="[Routes.User.Contacts.ReceivedRequests]"
+        (click)="receivedRequests()"
+      >
+        <i class="material-icons text-sm">connect_without_contact</i>
+        <span class="ml-2 font-bold">Received Requests</span>
+      </p-button>
+      <div *ngIf="receivedCount() > 0" class="notify">
+        {{ receivedCount() }}
+      </div>
+    </div>
+  </div>
+  <div class="flex-grow-1">
+    <div class="overflow-auto max md:h-full">
+      <div class="flex justify-content-evenly align-content-center flex-wrap">
+        <div class="p-2 sm:w-30rem">
+          <h4
+            *ngIf="Routes.User.Contacts.Friends === url()"
+            class="text-center"
+          >
+            Friends
+          </h4>
+          <h4
+            *ngIf="Routes.User.Contacts.SentRequests === url()"
+            class="text-center"
+          >
+            Sent Requests
+          </h4>
+          <h4
+            *ngIf="Routes.User.Contacts.ReceivedRequests === url()"
+            class="text-center"
+          >
+            Received Requests
+          </h4>
+          <router-outlet />
+        </div>
+        <div class="p-2 sm:w-30rem flex flex-column">
+          <h4 class="text-center">Friends Online</h4>
+          <app-online-friends></app-online-friends>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p-toast
+    [breakpoints]="{ '576px': { width: '100%', right: '0', left: '0' } }"
+  ></p-toast>
+
+  <app-loader [isLoading]="isLoading()" />
+</div>

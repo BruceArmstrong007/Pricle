@@ -1,0 +1,17 @@
+<div class="h-full flex flex-column">
+  <div class="flex-grow-1">
+    <div class="w-full h-full flex">
+      <app-navbar />
+      <div class="flex-grow-1">
+        <router-outlet />
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-toast
+  [breakpoints]="{ '576px': { width: '100%', right: '0', left: '0' } }"
+></p-toast>
+
+
+<app-loader [isLoading]="isLoading()" />

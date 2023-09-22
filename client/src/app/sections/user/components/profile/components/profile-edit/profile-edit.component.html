@@ -1,0 +1,161 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  class="px-5 flex flex-column gap-2"
+>
+  <div
+    class="flex w-full flex flex-column ustify-content-center align-items-center"
+  >
+    <app-avatar
+      [label]="user()?.name?.charAt(0)"
+      size="xlarge"
+      [image]="user()?.profile?.url"
+      (clickEvent)="image.click()"
+    />
+    <div class="flex justify-content-center align-items-center gap-1">
+      <i class="material-icons text-sm">touch_app</i>
+      <small class="p-2">Edit profile picture</small>
+    </div>
+  </div>
+
+  <p-dialog
+    header="Image Cropper"
+    [visible]="visible()"
+    [style]="{ width: '100%', height: '100vh' }"
+  >
+    <div class="flex flex-column gap-2">
+      <div
+        class="flex py-2 justify-content-evenly gap-2 flex-wrap overflow-auto"
+      >
+        <div class="max-w-25rem max-h-20rem flex flex-column gap-1">
+          <h4 class="text-center">Crop Image</h4>
+          <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="4 / 3"
+            [onlyScaleDown]="true"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+            (loadImageFailed)="loadImageFailed()"
+          ></image-cropper>
+        </div>
+        <div class="max-w-25rem max-h-20rem flex flex-column gap-1">
+          <h4 class="text-center">Cropped Image</h4>
+          <img [src]="croppedImage" priority />
+        </div>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <div class="w-full flex justify-content-between align-content-center">
+        <a
+          (click)="resetCropper()"
+          class="cursor-pointer flex justify-content-center align-items-center bg-red-500 p-2 border-round"
+        >
+          <i class="material-icons text-sm">cancel</i>
+          <span>Cancel</span>
+        </a>
+        <a
+          (click)="crop()"
+          class="cursor-pointer flex justify-content-center align-items-center bg-green-500 p-2 border-round"
+        >
+          <i class="material-icons text-sm">upload</i>
+          <span>Upload</span>
+        </a>
+      </div>
+    </ng-template>
+  </p-dialog>
+
+  <div class="hidden">
+    <input
+      accept="image/*"
+      type="file"
+      #image
+      (change)="fileChangeEvent($event); visible.set(true)"
+    />
+  </div>
+
+  <div class="flex flex-column gap-4">
+    <div>
+      <div class="flex justify-content-center align-items-center gap-2">
+        <label class="w-6rem" htmlFor="username">Username</label>
+        <input
+          type="text"
+          class="flushed-input w-full"
+          formControlName="username"
+          placeholder="Enter new username"
+        />
+      </div>
+      <div
+        class="text-center"
+        *ngIf="
+          f['username'].invalid &&
+          (f['username'].dirty || f['username'].touched)
+        "
+      >
+        <small
+          *ngIf="f['username'].errors && f['username'].hasError('maxlength')"
+          class="text-red-500"
+        >
+          Username should not exceed 25 characters.</small
+        >
+      </div>
+    </div>
+
+    <div>
+      <div class="flex justify-content-center align-items-center gap-2">
+        <label class="w-6rem" htmlFor="name">Name</label>
+        <input
+          class="flushed-input w-full"
+          type="text"
+          formControlName="name"
+          placeholder="Enter your name"
+        />
+      </div>
+
+      <div
+        class="text-center"
+        *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)"
+      >
+        <small
+          *ngIf="f['name'].errors && f['name'].hasError('maxlength')"
+          class="text-red-500"
+        >
+          Name should not exceed 50 characters.</small
+        >
+      </div>
+    </div>
+
+    <div>
+      <div class="flex gap-2">
+        <label class="w-6rem" htmlFor="bio">Description</label>
+        <textarea
+          rows="5"
+          cols="30"
+          class="flushed-input w-full"
+          formControlName="bio"
+          placeholder="Enter your Bio (Optional)"
+        ></textarea>
+      </div>
+      <div
+        class="text-center"
+        *ngIf="f['bio'].invalid && (f['bio'].dirty || f['bio'].touched)"
+      >
+        <small
+          *ngIf="f['bio'].errors && f['bio'].hasError('maxlength')"
+          class="text-red-500"
+        >
+          Description should not exceed 25 characters.</small
+        >
+      </div>
+    </div>
+
+    <div class="w-full flex justify-content-end align-content-center">
+      <p-button
+        type="submit"
+        label="Submit"
+        [loading]="state().isLoading"
+        styleClass="p-button-secondary p-button-rounded p-button-raised p-button-sm"
+      />
+    </div>
+  </div>
+</form>

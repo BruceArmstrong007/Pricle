@@ -1,0 +1,18 @@
+<div *ngFor="let contact of contacts(); trackBy: trackBy">
+  <app-contact-card
+    [contactID]="contact?._id"
+    (clickItem)="clickCard($event)"
+    [name]="contact?.name"
+    [username]="contact?.username"
+    [items]="items"
+    size="large"
+    [image]="contact?.profile?.url"
+  />
+  <p-divider />
+</div>
+<div
+  *ngIf="contacts().length === 0"
+  class="flex justify-content-center align-items-center"
+>
+  <h2 class="text-center">No received requests.</h2>
+</div>

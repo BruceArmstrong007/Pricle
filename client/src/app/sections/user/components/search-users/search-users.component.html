@@ -1,0 +1,52 @@
+<div class="w-full h-full p-4">
+  <div class="flex flex-column h-full">
+    <div class="flex justify-content-center align-items-center gap-2">
+      <i class="material-icons text-sm">search</i>
+      <input
+        [value]="state().name"
+        (keyup)="setName($event)"
+        class="w-20rem flushed-input"
+        placeholder="Search users here"
+      />
+    </div>
+    <ng-container *ngIf="state()?.users?.length === 0; else elseUsers">
+      <div
+        class="flex-grow-1 w-full flex justify-content-center align-items-center"
+      >
+        <div class="text-xl">Search for your contacts..</div>
+      </div>
+    </ng-container>
+    <ng-template #elseUsers>
+      <div #elseUsers class="flex-grow-1 flex justify-content-center overflow-auto">
+        <div class="w-30rem max">
+          <div class="p-5">
+            <ng-container *ngFor="let user of state()?.users; trackBy: trackBy">
+              <ng-container *ngIf="user?.isContact; else elseBlock">
+                <app-contact-card
+                  [contactID]="user?._id"
+                  [name]="user?.name"
+                  [username]="user?.username"
+                  size="large"
+                  [image]="user?.profile?.url"
+                  (clickItem)="clickCard($event)"
+                />
+              </ng-container>
+              <ng-template #elseBlock>
+                <app-contact-card
+                  [contactID]="user?._id"
+                  [name]="user?.name"
+                  [username]="user?.username"
+                  size="large"
+                  [image]="user?.profile?.url"
+                  [items]="state().items"
+                  (clickItem)="clickCard($event)"
+                />
+              </ng-template>
+              <p-divider />
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

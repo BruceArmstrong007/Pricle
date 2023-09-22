@@ -1,0 +1,28 @@
+<div
+  class="flex flex-column h-full h-screen w-7rem sm:w-10rem md:w-15rem lg:w-20rem gap-2"
+>
+  <div class="flex justify-content-center align-items-center gap-2 p-2">
+    <i class="material-icons text-sm">search</i>
+    <input
+      (keyup)="typing($event)"
+      class="w-6rem sm:w-7rem md:w-12rem lg:w-17rem flushed-input input"
+      placeholder="Search contacts"
+    />
+  </div>
+  <div class="flex-grow-1 overflow-y-auto">
+    <ng-container *ngFor="let contact of contacts(); trackBy: trackBy">
+      <app-chat-card
+        [contactID]="contact?._id"
+        [name]="contact?.name"
+        [image]="contact?.profile?.url"
+        [selected]="url() === Routes.User.Chats.Root + '/' + contact?._id"
+        (cardClick)="selectChat($event)"
+        [isOnline]="isOnline(contact?._id)"
+        [message]="messageEvent(contact?._id, contact?.name)"
+        [routerLink]="[Routes.User.Chats.Root + '/' + contact?._id]"
+        [deliveredCount]="deliveredStatus(contact?._id)"
+      />
+      <p-divider />
+    </ng-container>
+  </div>
+</div>

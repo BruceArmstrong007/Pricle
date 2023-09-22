@@ -1,0 +1,29 @@
+<p-card styleClass="sm:w-30rem border-round-xl">
+  <ng-template pTemplate="header">
+    <div class="w-full text-center text-2xl text-primary pt-4 font-bold">
+      Verify Account
+    </div>
+    <p-steps
+      styleClass="px-4"
+      [model]="state().items"
+      [activeIndex]="state().step"
+      [readonly]="true"
+    ></p-steps>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <app-email-step
+      [props]="state().params"
+      (nextStep)="nextStep()"
+      (clearParams)="clearParams()"
+      section="email"
+      [isLoading]="state().isLoading"
+      *ngIf="!state().step"
+    />
+    <app-token-step
+      [props]="state().params"
+      [isLoading]="state().isLoading"
+      (backStep)="backStep()"
+      *ngIf="state().step"
+    />
+  </ng-template>
+</p-card>

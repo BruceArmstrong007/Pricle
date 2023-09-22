@@ -1,0 +1,90 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+      target: development
+    command: npm run start:dev api
+    env_file:
+      - ./apps/api/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3000:3000'
+    depends_on:
+      - rabbitmq  
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
+      target: development
+    command: npm run start:dev auth
+    env_file:
+      - ./apps/auth/.env
+    depends_on:
+      - rabbitmq
+      - user
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  user:
+    build:
+      context: .
+      dockerfile: ./apps/user/Dockerfile
+      target: development
+    command: npm run start:dev user
+    env_file:
+      - ./apps/user/.env
+    depends_on:
+      - rabbitmq
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  contact:
+    build:
+      context: .
+      dockerfile: ./apps/contact/Dockerfile
+      target: development
+    command: npm run start:dev contact
+    env_file:
+      - ./apps/contact/.env
+    depends_on:
+      - rabbitmq
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  chat:
+    build:
+      context: .
+      dockerfile: ./apps/chat/Dockerfile
+      target: development
+    command: npm run start:dev chat
+    env_file:
+      - ./apps/chat/.
+    ports:
+      - '3001:3001'
+    depends_on:
+      - rabbitmq
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  upload:
+    build:
+      context: .
+      dockerfile: ./apps/upload/Dockerfile
+      target: development
+    command: npm run start:dev upload
+    env_file:
+      - ./apps/upload/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3002:3002'
+    depends_on:
+      - rabbitmq 
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - '5672:5672'

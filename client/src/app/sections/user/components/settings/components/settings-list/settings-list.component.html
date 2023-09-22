@@ -1,0 +1,21 @@
+<div
+  class="overflow-y-auto h-full h-screen w-9rem sm:w-12rem py-4 p-2"
+>
+  <div class="flex-grow-1 flex flex-column p-2">
+    <ng-container *ngFor="let section of catergory()">
+      <a
+        class="flex gap-1 justify-content-start align-items-center border-round cursor-pointer no-underline p-2"
+        [routerLink]="[section?.url]"
+        routerLinkActive="bg-blue-500 text-white"
+      >
+        <div>
+          <i class="material-icons">{{ section?.icon }}</i>
+        </div>
+        <div class="text-sm">
+          {{ section?.name }}
+        </div>
+      </a>
+      <p-divider></p-divider>
+    </ng-container>
+  </div>
+</div>

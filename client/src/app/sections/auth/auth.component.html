@@ -1,0 +1,9 @@
+<div class="h-full flex flex-column">
+  <app-navbar />
+  <div class="flex-grow-1">
+    <div class="w-full h-full flex justify-content-center align-items-center">
+      <router-outlet />
+    </div>
+  </div>
+</div>
+<p-toast [breakpoints]="{'576px': {width: '100%', right: '0', left: '0'}}"></p-toast>

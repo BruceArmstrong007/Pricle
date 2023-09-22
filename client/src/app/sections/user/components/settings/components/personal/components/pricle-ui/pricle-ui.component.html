@@ -1,0 +1,45 @@
+<div
+  class="flex gap-2 justify-content-between align-items-center w-full flex-wrap"
+>
+  <div class="flex-grow-1 flex justify-content-between align-items-center">
+    <label htmlfor="mode">Mode</label>
+    <p-button
+      (click)="themeService.mode.set(!themeService.mode())"
+      [styleClass]="
+        themeService.mode()
+          ? 'p-button-rounded p-button-text p-button-sm'
+          : 'p-button-rounded p-button-text p-button-sm p-button-warning'
+      "
+    >
+      <ng-template pTemplate="icon">
+        <i class="material-icons text-sm">{{
+          themeService.mode() ? "dark_mode" : "light_mode"
+        }}</i>
+      </ng-template>
+    </p-button>
+  </div>
+  <div class="flex-grow-1 flex justify-content-between align-items-center">
+    <label htmlfor="mode">Theme</label>
+    <p-button
+      (click)="op.toggle($event)"
+      styleClass="p-button-rounded p-button-text p-button-sm p-button-info"
+    >
+      <ng-template pTemplate="icon">
+        <i class="material-icons text-sm">palette</i>
+      </ng-template>
+    </p-button>
+  </div>
+</div>
+
+<p-overlayPanel #op>
+  <div class="flex flex-column gap-2">
+    <ng-container *ngFor="let item of stateOptions(); trackBy: trackBy">
+      <p-button
+        (click)="themeSelect(item?.value)"
+        [label]="item.label"
+        styleClass="p-button-text p-button-sm p-button-text w-full"
+      >
+      </p-button>
+    </ng-container>
+  </div>
+</p-overlayPanel>

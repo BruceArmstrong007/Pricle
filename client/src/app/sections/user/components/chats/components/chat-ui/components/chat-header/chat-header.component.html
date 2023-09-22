@@ -1,0 +1,20 @@
+<div class="flex justify-content-start align-items-center gap-4">
+  <div class="relative">
+    <app-avatar [image]="image" [label]="label" [size]="size" />
+    <div class="dot" [ngClass]="{ online: isOnline, offline: !isOnline }"></div>
+  </div>
+  <div class="flex flex-column gap-2 flex-grow-1">
+    <div class="w-12rem md:w-full textWraping">{{ name }}</div>
+    <div class="flex justify-content-start align-items-center gap-6">
+      <div class="text-xs">{{ username }}</div>
+      <div *ngIf="typing" class="flex justify-content-start align-items-center">
+        <div class="max-w-2rem md:max-w-12rem lg:max-w-full textWraping text-xs">
+          {{ typing.author }} &nbsp;
+        </div>
+        <div class="text-xs textWraping">
+          {{ typing.content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

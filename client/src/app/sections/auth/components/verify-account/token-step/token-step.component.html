@@ -1,0 +1,92 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-column gap-4">
+  <div>
+    <div
+      class="p-inputgroup w-full flex justify-content-center align-content-center"
+    >
+      <span class="p-inputgroup-addon cursor-pointer">
+        <i class="material-icons text-sm">mail</i>
+      </span>
+      <input
+        type="text"
+        pInputText
+        formControlName="email"
+        placeholder="Email"
+      />
+    </div>
+    <div
+      class="text-center"
+      *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)"
+    >
+      <small
+        *ngIf="f['email'].errors && f['email'].hasError('required')"
+        class="text-red-500"
+      >
+        Email is required.</small
+      >
+
+      <small
+        *ngIf="f['email'].errors && f['email'].hasError('maxlength')"
+        class="text-red-500"
+      >
+        Email should not exceed 320 characters.</small
+      >
+
+      <small
+        *ngIf="f['email'].errors && f['email'].hasError('pattern')"
+        class="text-red-500"
+      >
+        Enter valid email.</small
+      >
+    </div>
+  </div>
+
+  <div>
+    <div
+      class="p-inputgroup w-full flex justify-content-center align-content-center"
+    >
+      <span class="p-inputgroup-addon cursor-pointer">
+        <i class="material-icons text-sm">pin</i>
+      </span>
+      <input
+        type="text"
+        pInputText
+        formControlName="token"
+        placeholder="Pass Code"
+      />
+    </div>
+    <div class="text-center">
+      <small
+        *ngIf="!f['token'].touched! && !f['token'].dirty && !f['token'].value"
+      >
+        Check your email for passcode.</small
+      >
+    </div>
+    <div
+      class="text-center"
+      *ngIf="f['token'].invalid && (f['token'].dirty || f['token'].touched)"
+    >
+      <small
+        *ngIf="f['token'].errors && f['token'].hasError('required')"
+        class="text-red-500"
+      >
+        Passcode is required.</small
+      >
+    </div>
+  </div>
+
+  <div class="w-full flex justify-content-between align-content-center">
+    <p-button
+
+      label="Back"
+      (click)="back()"
+      styleClass="p-button-primary p-button-rounded p-button-outlined p-button-sm"
+    />
+    <p-button
+
+      [loading]="isLoading"
+      type="submit"
+      label="Submit"
+      styleClass="p-button-secondary p-button-rounded p-button-raised p-button-sm"
+    />
+  </div>
+</form>

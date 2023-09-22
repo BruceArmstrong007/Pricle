@@ -1,0 +1,21 @@
+<div class="flex max-w-25rem gap-2">
+  <app-avatar [image]="url" [label]="name?.charAt(0)" size="normal" />
+  <div class="text-xs flex w-full flex-column gap-2">
+    <div class="flex justify-content-between align-items-center gap-2">
+      <div class="textWraping">{{ name }}</div>
+      <small>{{ timestamp | date : "short" }}</small>
+    </div>
+    <small class="textWraping">{{ username }}</small>
+    <div class="message">
+      {{ content }}
+    </div>
+    <div *ngIf="status" class="flex justify-content-start align-items-center gap-2">
+      <i
+        class="material-icons text-sm"
+        [ngClass]="{ 'text-green-500': status === MessageStatus.SEEN }"
+        >{{ status === MessageStatus.SENT ? "done" : "done_all" }}</i
+      >
+      {{ status }}
+    </div>
+  </div>
+</div>

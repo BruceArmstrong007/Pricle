@@ -1,0 +1,20 @@
+<a
+  class="cursor-pointer flex gap-1 p-2 border-round relative"
+  [ngClass]="{ 'bg-blue-500': selected }"
+>
+  <div class="relative">
+    <app-avatar [label]="name?.charAt(0)" size="normal" [image]="image" />
+    <div class="dot" [ngClass]="{ online: isOnline, offline: !isOnline }"></div>
+  </div>
+  <div
+    class="flex flex-column justify-content-center align-items-start gap-1 w-full overflow-hidden"
+  >
+    <div class="text-xs textWraping w-15rem">{{ name }}</div>
+    <div class="text-xs flex gap-1 w-full">
+      <div class="max-w-5rem textWraping">{{ message?.author }}</div>
+      {{ message?.type === "chat" ? ":" : "" }}
+      <div class="max-w-5rem textWraping">{{ message?.content }}</div>
+    </div>
+  </div>
+  <div *ngIf="deliveredCount && deliveredCount > 0" class="notify right-0 top-0">{{deliveredCount}} new</div>
+</a>

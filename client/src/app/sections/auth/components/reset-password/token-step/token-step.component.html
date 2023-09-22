@@ -1,0 +1,183 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-column gap-4">
+  <div>
+    <div
+      class="p-inputgroup w-full flex justify-content-center align-content-center"
+    >
+      <span class="p-inputgroup-addon cursor-pointer">
+        <i class="material-icons text-sm">mail</i>
+      </span>
+      <input
+        type="text"
+        pInputText
+        formControlName="email"
+        placeholder="Email"
+      />
+    </div>
+    <div
+      class="text-center"
+      *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)"
+    >
+      <small
+        *ngIf="f['email'].errors && f['email'].hasError('required')"
+        class="text-red-500"
+      >
+        Email is required.</small
+      >
+
+      <small
+        *ngIf="f['email'].errors && f['email'].hasError('maxlength')"
+        class="text-red-500"
+      >
+        Email should not exceed 320 characters.</small
+      >
+
+      <small
+        *ngIf="f['email'].errors && f['email'].hasError('pattern')"
+        class="text-red-500"
+      >
+        Enter valid email.</small
+      >
+    </div>
+  </div>
+
+
+  <div>
+    <div
+      class="p-inputgroup w-full flex justify-content-center align-content-center"
+    >
+      <input
+        [type]="state().passwordVisibility ? 'text' : 'password'"
+        pInputText
+        (cut)="preventDefault($event)"
+        (copy)="preventDefault($event)"
+        (paste)="preventDefault($event)"
+        formControlName="password"
+        placeholder="Password"
+      />
+      <span
+        (click)="
+        changePasswordVisibility()"
+        class="p-inputgroup-addon cursor-pointer"
+      >
+        <i class="material-icons text-sm">{{
+          state().passwordVisibility ? "visibility" : "visibility_off"
+        }}</i>
+      </span>
+    </div>
+    <div
+      class="text-center"
+      *ngIf="
+        f['password'].invalid &&
+        (f['password'].dirty || f['password'].touched)
+      "
+    >
+      <small
+        *ngIf="f['password'].errors && f['password'].hasError('required')"
+        class="text-red-500"
+      >
+        Password is required.</small
+      >
+
+      <small
+        *ngIf="f['password'].errors && f['password'].hasError('minlength')"
+        class="text-red-500"
+      >
+        Password should not be less than 8 characters.</small
+      >
+
+      <small
+        *ngIf="f['password'].errors && f['password'].hasError('pattern')"
+        class="text-red-500"
+      >
+        Password should be alphanumberic and should have 1 number.</small
+      >
+    </div>
+  </div>
+
+  <div>
+    <div
+      class="p-inputgroup w-full flex justify-content-center align-content-center"
+    >
+      <input
+        [type]="state().confirmPasswordVisibility ? 'text' : 'password'"
+        pInputText
+        (cut)="preventDefault($event)"
+        (copy)="preventDefault($event)"
+        (paste)="preventDefault($event)"
+        formControlName="confirmPassword"
+        placeholder="Confirm Password"
+      />
+      <span
+        (click)="
+          changeConfirmPasswordVisibility()
+        "
+        class="p-inputgroup-addon cursor-pointer"
+      >
+        <i class="material-icons text-sm">{{
+          state().confirmPasswordVisibility ? "visibility" : "visibility_off"
+        }}</i>
+      </span>
+    </div>
+    <div
+      class="text-center"
+      *ngIf="
+        f['confirmPassword'].invalid &&
+        (f['confirmPassword'].dirty || f['confirmPassword'].touched)
+      "
+    >
+      <small
+        *ngIf="
+          f['confirmPassword'].errors &&
+          f['confirmPassword'].hasError('required')
+        "
+        class="text-red-500"
+      >
+        Confirm Password is required.</small
+      >
+
+      <small
+        *ngIf="
+          f['confirmPassword'].errors &&
+          f['confirmPassword'].hasError('minlength')
+        "
+        class="text-red-500"
+      >
+        Confirm Password should not be less than 8 characters.</small
+      >
+      <small
+        *ngIf="
+          f['confirmPassword'].errors &&
+          f['confirmPassword'].hasError('mismatch') &&
+          !f['confirmPassword'].hasError('minlength')
+        "
+        class="text-red-500"
+      >
+        Both passwords should match.</small
+      >
+
+      <small
+        *ngIf="
+          f['confirmPassword'].errors &&
+          f['confirmPassword'].hasError('pattern')
+        "
+        class="text-red-500"
+      >
+        Password should be alphanumberic and should have 1 number.</small
+      >
+    </div>
+  </div>
+
+  <div class="w-full flex justify-content-between align-content-center">
+    <p-button
+      label="Back"
+      (click)="back()"
+      styleClass="p-button-primary p-button-rounded p-button-outlined p-button-sm"
+    />
+    <p-button
+    [loading]="state().isLoading"
+    type="submit"
+      label="Submit"
+      styleClass="p-button-secondary p-button-rounded p-button-raised p-button-sm"
+    />
+  </div>
+</form>

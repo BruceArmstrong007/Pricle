@@ -1,0 +1,20 @@
+<p-avatar
+  *ngIf="image"
+  size="xlarge"
+  [image]="image"
+  [size]="size"
+  class="cursor-pointer"
+  shape="circle"
+  (click)="clickEvent.emit(true)"
+></p-avatar>
+<p-avatar
+  *ngIf="!image"
+  size="xlarge"
+  [style]="{ 'background-color': '#2196F3', color: '#ffffff' }"
+  [label]="label"
+  [image]="image"
+  [size]="size"
+  class="cursor-pointer"
+  shape="circle"
+  (click)="clickEvent.emit(true)"
+></p-avatar>

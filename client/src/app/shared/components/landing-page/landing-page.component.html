@@ -1,0 +1,47 @@
+<div class="canvasContainer" #cmp></div>
+<div class="absolute top-0 left-0 p-8">
+  <div class="flex flex-column gap-7">
+    <div class="flex gap-1 justify-content-start align-items-center">
+      <div class="flex flex-column gap-4">
+        <div class="text-8xl text-primary">Pricle</div>
+        <div class="text-2xl text-primary line-height-4">Connecting World, One chat at a time.</div>
+      </div>
+    </div>
+    <div class="flex gap-2 justify-content-start align-items-center">
+      <p-button
+        *ngIf="routePath() !== Routes.Auth.Login"
+        [routerLink]="[Routes.Auth.Login]"
+        styleClass="flex justify-content-center align-items-center gap-1 p-button-secondary p-button-text p-button-rounded p-button-raised p-button-sm"
+      >
+        <i class="material-icons">login</i>
+        <div class="text-xl">Login</div>
+      </p-button>
+      <p-button
+        *ngIf="routePath() !== Routes.Auth.Register"
+        [routerLink]="[Routes.Auth.Register]"
+        styleClass="flex justify-content-center align-items-center gap-1 p-button-primary p-button-rounded p-button-raised p-button-sm"
+      >
+        <i class="material-icons">app_registration</i>
+        <div class="text-xl">Register</div>
+      </p-button>
+    </div>
+  </div>
+</div>
+<div class="absolute top-0 right-0 p-4">
+  <p-button
+    (click)="theme.mode.set(!theme.mode())"
+    [styleClass]="
+      theme.mode()
+        ? 'p-button-rounded p-button-text'
+        : 'p-button-rounded p-button-text p-button-warning'
+    "
+  >
+    <ng-template pTemplate="icon">
+      <i class="material-icons">{{
+        theme.mode() ? "dark_mode" : "light_mode"
+      }}</i>
+    </ng-template>
+  </p-button>
+</div>
+
+<app-loader [isLoading]="isLoading() < 100" />

@@ -1,0 +1,121 @@
+<p-card styleClass="sm:w-30rem border-round-xl">
+  <ng-template pTemplate="header">
+    <div class="w-full text-center text-2xl text-primary pt-4 font-bold">
+      Login
+    </div>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+      class="flex flex-column gap-4"
+    >
+      <div>
+        <div
+          class="p-inputgroup w-full flex justify-content-center align-content-center"
+        >
+          <span class="p-inputgroup-addon cursor-pointer">
+            <i class="material-icons text-sm">person</i>
+          </span>
+          <input
+            type="text"
+            pInputText
+            formControlName="username"
+            placeholder="Username"
+          />
+        </div>
+        <div
+          class="text-center"
+          *ngIf="
+            f['username'].invalid &&
+            (f['username'].dirty || f['username'].touched)
+          "
+        >
+          <small
+            *ngIf="f['username'].errors && f['username'].hasError('required')"
+            class="text-red-500"
+          >
+            Username is required.</small
+          >
+
+          <small
+            *ngIf="f['username'].errors && f['username'].hasError('maxlength')"
+            class="text-red-500"
+          >
+            Username should not exceed 25 characters.</small
+          >
+        </div>
+      </div>
+
+      <div>
+        <div
+          class="p-inputgroup w-full flex justify-content-center align-content-center"
+        >
+          <input
+            (cut)="preventDefault($event)"
+            (copy)="preventDefault($event)"
+            (paste)="preventDefault($event)"
+            [type]="state().passwordVisibility ? 'text' : 'password'"
+            pInputText
+            formControlName="password"
+            placeholder="Password"
+          />
+          <span
+            (click)="changeVisibility()"
+            class="p-inputgroup-addon cursor-pointer"
+          >
+            <i class="material-icons text-sm">{{
+              state().passwordVisibility ? "visibility" : "visibility_off"
+            }}</i>
+          </span>
+        </div>
+        <div
+          class="text-center"
+          *ngIf="
+            f['password'].invalid &&
+            (f['password'].dirty || f['password'].touched)
+          "
+        >
+          <small
+            *ngIf="f['password'].errors && f['password'].hasError('required')"
+            class="text-red-500"
+          >
+            Password is required.</small
+          >
+
+          <small
+            *ngIf="f['password'].errors && f['password'].hasError('minlength')"
+            class="text-red-500"
+          >
+            Password should not be less than 8 characters.</small
+          >
+        </div>
+        <small
+          *ngIf="f['password'].errors && f['password'].hasError('pattern')"
+          class="text-red-500"
+        >
+          Password should be alphanumberic and should have atleast one
+          number.</small
+        >
+      </div>
+
+      <div class="w-full flex justify-content-between align-content-center">
+        <p-button
+          label="Clear"
+          (click)="clear()"
+          styleClass="p-button-primary p-button-rounded p-button-outlined p-button-sm"
+        />
+        <small class="text-info"
+          >Forgot password?
+          <a [routerLink]="Routes.Auth.ResetPassword">Click here</a></small
+        >
+        <p-button
+          type="submit"
+          label="Submit"
+          [loading]="state().isLoading"
+          styleClass="p-button-secondary p-button-rounded p-button-raised p-button-sm"
+        />
+      </div>
+    </form>
+  </ng-template>
+</p-card>

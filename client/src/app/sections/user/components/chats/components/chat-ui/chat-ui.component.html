@@ -1,0 +1,51 @@
+<div
+  class="max-h-screen p-4 border-round border-1 border-blue-400 flex flex-column h-full gap-4"
+>
+  <div>
+    <app-chat-header
+      [contactID]="contact()?._id"
+      [image]="contact()?.profile?.url"
+      [name]="contact()?.name"
+      [username]="contact()?.username"
+      [label]="contact()?.name?.charAt(0)"
+      [isOnline]="isOnline(contact()?._id)"
+      size="large"
+      [typing]="typing()"
+    />
+  </div>
+  <div class="h-full overflow-auto px-2" #content>
+    <app-messages [messages]="messages()" [user]="user()" [contact]="contact()" />
+  </div>
+  <div class="flex justify-content-start align-items-center gap-2">
+    <i class="material-icons hidden lg:block">chat</i>
+    <textarea
+      [value]="chat()"
+      (keydown)="typingEvent($event)"
+      class="w-full flushed-input"
+      placeholder="Send a message !"
+      (focus)="onTyping()"
+      (blur)="onFinishedTyping()"
+    >
+    </textarea>
+    <p-overlayPanel #op>
+      <emoji-mart (emojiClick)="op.hide(); addEmoji($event)"></emoji-mart>
+    </p-overlayPanel>
+    <p-button
+      (click)="op.toggle($event)"
+      styleClass="p-button-rounded p-button-text p-button-warning border-200 cursor-pointer hidden lg:block"
+    >
+      <ng-template pTemplate="icon">
+        <i class="material-icons">mood</i>
+      </ng-template>
+    </p-button>
+
+    <p-button
+      (click)="sendMessage()"
+      styleClass="p-button-rounded p-button-text p-button-info border-200 cursor-pointer"
+    >
+      <ng-template pTemplate="icon">
+        <i class="material-icons">send</i>
+      </ng-template>
+    </p-button>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="w-full h-full flex flex-column gap-2">
+  <div class="flex justify-content-center align-items-center">
+    <app-avatar
+      [label]="user?.name?.charAt(0)"
+      size="xlarge"
+      [image]="user?.profile?.url"
+    />
+  </div>
+  <h3 class="text-center">{{ user?.name }}</h3>
+  <small class="text-center">{{ user?.username }}</small>
+  <p class="text-center">{{ user?.bio }}</p>
+</div>

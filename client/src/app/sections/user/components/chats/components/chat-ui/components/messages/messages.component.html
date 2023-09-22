@@ -1,0 +1,39 @@
+<div class="w-full flex flex-column gap-5" #messageContent>
+  <div *ngFor="let message of messages; trackBy: trackBy">
+    <div
+      [ngClass]="{
+        'justify-content-end': message?.senderID === user?._id,
+        'justify-content-start': message?.senderID !== user?._id
+      }"
+      class="flex w-full align-items-center"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          messageTemplate;
+          context: {
+            message: message,
+            data: message?.senderID !== user?._id ? contact : user,
+            status:
+              message?.senderID === user?._id ? message?.status : undefined
+          }
+        "
+      ></ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template
+  #messageTemplate
+  let-message="message"
+  let-data="data"
+  let-status="status"
+>
+  <app-message-card
+    [url]="data?.profile?.url"
+    [name]="data?.name"
+    [username]="data?.username"
+    [timestamp]="message?.timestamp"
+    [content]="message?.content"
+    [status]="status"
+  />
+</ng-template>

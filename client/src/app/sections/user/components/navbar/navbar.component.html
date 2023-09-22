@@ -1,0 +1,104 @@
+<div class="w-5rem sm:w-8rem h-full">
+  <div class="h-full flex flex-column justify-content-between py-3">
+    <div class="flex flex-column align-items-center">
+      <div>
+        <div class="flex gap-2 justify-content-evenly align-items-center">
+          <p-avatar
+            [image]="AppIcon"
+            styleClass="border-round"
+            size="normal"
+          ></p-avatar>
+          <div class="hidden sm:block text-large text-primary-400 cursor-pointer">Pricle</div>
+        </div>
+        <div class="px-2">
+          <p-divider></p-divider>
+        </div>
+      </div>
+      <div class="flex flex-column align-items-center gap-3">
+        <div class="relative">
+          <p-button
+            [autofocus]="
+              currentRoute() === Routes.User.Chats.Root ? true : false
+            "
+            pAutoFocus
+            [routerLink]="Routes.User.Chats.Root"
+            styleClass="p-button-rounded p-button-text p-button-info border-200 cursor-pointer"
+          >
+            <ng-template pTemplate="icon">
+              <i class="material-icons">mode_comment</i>
+            </ng-template>
+          </p-button>
+          <div *ngIf="deliveredCount() > 0" class="notify right-0 bottom-0">
+            {{ deliveredCount() }}
+          </div>
+        </div>
+        <div class="relative">
+          <p-button
+            [autofocus]="
+              currentRoute() === Routes.User.Contacts.Root ? true : false
+            "
+            pAutoFocus
+            [routerLink]="Routes.User.Contacts.Root"
+            styleClass="p-button-rounded p-button-text p-button-info border-200 cursor-pointer"
+          >
+            <ng-template pTemplate="icon">
+              <i class="material-icons">group</i>
+            </ng-template>
+          </p-button>
+          <div *ngIf="totalCount() > 0" class="notify right-0 bottom-0">
+            {{ totalCount() }}
+          </div>
+        </div>
+
+        <p-button
+          [autofocus]="
+            currentRoute() === Routes.User.SearchUsers.Root ? true : false
+          "
+          pAutoFocus
+          [routerLink]="Routes.User.SearchUsers.Root"
+          styleClass="p-button-rounded p-button-text p-button-info border-200 cursor-pointer"
+        >
+          <ng-template pTemplate="icon">
+            <i class="material-icons">search</i>
+          </ng-template>
+        </p-button>
+      </div>
+    </div>
+    <div class="m-auto"></div>
+    <div class="flex flex-column">
+      <div class="flex flex-column align-items-center gap-3">
+        <p-button
+          styleClass="p-button-rounded p-button-text p-button-info border-200 cursor-pointer"
+          [autofocus]="
+            currentRoute() === Routes.User.Settings.Root ? true : false
+          "
+          pAutoFocus
+          [routerLink]="Routes.User.Settings.Root"
+        >
+          <ng-template pTemplate="icon">
+            <i class="material-icons">settings</i>
+          </ng-template>
+        </p-button>
+        <p-button
+          (click)="show()"
+          styleClass="p-button-rounded p-button-text p-button-danger border-200 cursor-pointer"
+        >
+          <ng-template pTemplate="icon">
+            <i class="material-icons">logout</i>
+          </ng-template>
+        </p-button>
+      </div>
+      <div class="flex flex-column align-items-center">
+        <div class="px-2">
+          <p-divider></p-divider>
+        </div>
+        <app-avatar
+          [label]="user()?.name?.charAt(0)"
+          size="large"
+          [image]="user()?.profile?.url"
+          [routerLink]="Routes.User.Profile.Root"
+        />
+      </div>
+    </div>
+  </div>
+</div>

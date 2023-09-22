@@ -1,0 +1,66 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-column gap-4">
+  <div class="flex flex-column gap-4">
+    <div class="flex flex-column">
+      <div class="flex gap-2 justify-content-start align-items-center">
+        <label class="w-6rem" htmlFor="email">E-Mail</label>
+        <div
+          class="flex-grow-1 flex gap-4 justify-content-center align-items-center"
+        >
+          <input
+            class="flushed-input flex-grow-1"
+            type="email"
+            formControlName="email"
+            placeholder="Enter your email"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-column">
+      <div class="flex gap-2 justify-content-start align-items-center">
+        <label class="w-6rem" htmlFor="token">Token</label>
+        <div
+          class="flex-grow-1 flex gap-4 justify-content-center align-items-center"
+        >
+          <input
+            class="flushed-input flex-grow-1"
+            formControlName="token"
+            placeholder="Enter token from email"
+          />
+
+          <p-button
+            (click)="sendVerificationLink()"
+            label="Send Verification Link"
+            [loading]="state().isLinkLoading"
+            styleClass="p-button-info p-button-rounded p-button-raised p-button-sm"
+          />
+        </div>
+      </div>
+      <div
+        class="text-center"
+        *ngIf="f['token'].invalid && (f['token'].dirty || f['token'].touched)"
+      >
+        <small
+          *ngIf="f['token'].errors && f['token'].hasError('required')"
+          class="text-red-500"
+        >
+          Token is required.</small
+        >
+      </div>
+    </div>
+
+    <div class="flex gap-2 justify-content-between align-items-center">
+      <p-button
+        label="Clear"
+        (click)="clear()"
+        styleClass="p-button-primary p-button-rounded p-button-outlined p-button-sm"
+      />
+      <p-button
+        type="submit"
+        label="Submit"
+        [disabled]="state().isLinkSent ? false : true"
+        [loading]="state().isLoading"
+        styleClass="p-button-secondary p-button-rounded p-button-raised p-button-sm"
+      />
+    </div>
+  </div>
+</form>

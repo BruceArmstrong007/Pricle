@@ -1,0 +1,16 @@
+<div class="border-round h-full">
+  <div class="overflow-auto max md:h-full">
+    <div class="flex justify-content-evenly align-content-center flex-wrap">
+      <div class="flex-grow-1">
+        <h4 class="text-center">Edit Profile</h4>
+        <app-profile-edit />
+      </div>
+      <div class="flex-grow-1 flex flex-column">
+        <h4 class="text-center">Preview</h4>
+        <div class="flex-grow-1 flex justify-content-center align-items-center">
+          <app-profile-preview [user]="user()" [isLoading]="isLoading()" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
