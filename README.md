@@ -2,7 +2,7 @@
 Pricle - Connect with your loved ones.
 
 # Tech Stack </br>
-Client - Angular Client - Angular V16 NGRX (store,effects,component-store, entity,devtools), PWA, Socket.io, PrimeNG, PrimeFlex, Material Icons, ThreeJS(3D) </br></br>
+Client - Angular Client - Angular V16 NGRX (store,effects,component-store, entity,devtools), PWA, Socket.io, PrimeNG, PrimeFlex, Material Icons, ThreeJS(3D), ngx-image-cropper, ngx-emoji-mart </br></br>
 Server-Mono - Monolithic Server - NestJS, NodeMailer, Socket.io, MongoDB, RedisDB, Redis Pub/Sub, Firebase Storage, JWT Passport, Multer, Class-Validator, bcrypt </br></br>
 Server-Micro (many commits behind server-mono) - Microservices Server - NestJS, RabbitMQ, NodeMailer, Socket.io, MongoDB, RedisDB, Redis Pub/Sub, Firebase Storage, JWT Passport, Multer, Class-Validator, bcrypt </br></br>
 
