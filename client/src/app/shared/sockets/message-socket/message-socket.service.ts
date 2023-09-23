@@ -1,6 +1,6 @@
-import { Injectable, effect, inject, signal } from '@angular/core';
+import { Injectable, effect, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { filter, take } from 'rxjs';
+import { filter } from 'rxjs';
 import { Socket, io } from 'socket.io-client';
 import { authFeature } from 'src/app/stores/auth/auth.reducer';
 import { channelsActions } from 'src/app/stores/channels/channels.action';
@@ -28,20 +28,16 @@ export class MessageSocketService {
   private readonly friendListIDs = this.store.selectSignal(
     contactsFeature?.friendListIDs
   );
-  private readonly gotToken = signal(false);
+
   private readonly accesssToken$ = this.store.select(
     authFeature?.selectAccessToken
   );
   constructor() {
-    this.accesssToken$.subscribe((accessToken) => {
-      if (!accessToken) {
-        this.gotToken.set(false);
-        return;
-      }
-      if (this.gotToken()) {
-        return;
-      }
-      this.gotToken.set(true);
+    this.accesssToken$
+    .pipe(
+      filter((res) => (res ? true : false)),
+      // take(1)
+    ).subscribe((accessToken) => {
       if (this.socket) this.disconnect();
       this.socket = io(environment.wsURL + '/message', {
         forceNew: true,
