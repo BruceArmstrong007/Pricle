@@ -33,28 +33,33 @@ export class MessageSocketService {
     authFeature?.selectAccessToken
   );
   constructor() {
-    this.accesssToken$.subscribe((res) => {
-      if (this.socket) this.disconnect();
-      this.socket = io(environment.wsURL + '/message', {
-        forceNew: true,
-        reconnection: true,
-        reconnectionAttempts: 5,
-        reconnectionDelay: 2000,
-        reconnectionDelayMax: 5000,
-        timeout: 10000,
-        autoConnect: true,
-        transports: ['websocket', 'polling'],
-        query: {
-          token: res,
-        },
-      });
+    this.accesssToken$
+      .pipe(
+        filter((res) => (res ? true : false))
+        // take(1)
+      )
+      .subscribe((res) => {
+        if (this.socket) this.disconnect();
+        this.socket = io(environment.wsURL + '/message', {
+          forceNew: true,
+          reconnection: true,
+          reconnectionAttempts: 5,
+          reconnectionDelay: 2000,
+          reconnectionDelayMax: 5000,
+          timeout: 10000,
+          autoConnect: true,
+          transports: ['websocket', 'polling'],
+          query: {
+            token: res,
+          },
+        });
 
-      this.socket?.on('connect', () => {
-        this.listenForMessages();
-        this.listenForTyping();
-        this.listenForMessageUpdates();
+        this.socket?.on('connect', () => {
+          this.listenForMessages();
+          this.listenForTyping();
+          this.listenForMessageUpdates();
+        });
       });
-    });
 
     effect(() => {
       const friendListIDs = this.friendListIDs();

@@ -40,27 +40,32 @@ export class UserSocketService {
   private readonly toastService = inject(MessageService);
 
   constructor() {
-    this.accesssToken$.subscribe((accessToken) => {
-      if (this.socket) this.disconnect();
+    this.accesssToken$
+      .pipe(
+        filter((res) => (res ? true : false)),
+        // take(1)
+      )
+      .subscribe((accessToken) => {
+        if (this.socket) this.disconnect();
 
-      this.socket = io(environment.wsURL + '/user', {
-        forceNew: true,
-        reconnection: true,
-        reconnectionAttempts: 5,
-        reconnectionDelay: 2000,
-        reconnectionDelayMax: 5000,
-        timeout: 10000,
-        autoConnect: true,
-        transports: ['websocket', 'polling'],
-        query: {
-          token: accessToken,
-        },
+        this.socket = io(environment.wsURL + '/user', {
+          forceNew: true,
+          reconnection: true,
+          reconnectionAttempts: 5,
+          reconnectionDelay: 2000,
+          reconnectionDelayMax: 5000,
+          timeout: 10000,
+          autoConnect: true,
+          transports: ['websocket', 'polling'],
+          query: {
+            token: accessToken,
+          },
+        });
+        this.socket?.on('connect', () => {
+          this.establishConnection();
+          this.listenToNotifications();
+        });
       });
-      this.socket?.on('connect', () => {
-        this.establishConnection();
-        this.listenToNotifications();
-      });
-    });
   }
 
   establishConnection() {
