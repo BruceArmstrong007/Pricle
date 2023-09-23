@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { Socket, io } from 'socket.io-client';
 import { Store } from '@ngrx/store';
@@ -8,7 +8,6 @@ import { contactsActions } from 'src/app/stores/contacts/contacts.action';
 import { MessageService } from 'primeng/api';
 import { onlineFriendsActions } from '../../../stores/online-friends/online-friends.action';
 import { OnlineUsers } from 'src/app/stores/online-friends/online-friends.model';
-import { filter, pairwise, take } from 'rxjs';
 
 interface ContactNotification {
   type: string;
@@ -38,34 +37,36 @@ export class UserSocketService {
     contactsFeature?.selectEntities
   );
   private readonly toastService = inject(MessageService);
+  private readonly gotToken = signal(false);
 
   constructor() {
-    this.accesssToken$
-      .pipe(
-        filter((res) => (res ? true : false)),
-        // take(1)
-      )
-      .subscribe((accessToken) => {
-        if (this.socket) this.disconnect();
-
-        this.socket = io(environment.wsURL + '/user', {
-          forceNew: true,
-          reconnection: true,
-          reconnectionAttempts: 5,
-          reconnectionDelay: 2000,
-          reconnectionDelayMax: 5000,
-          timeout: 10000,
-          autoConnect: true,
-          transports: ['websocket', 'polling'],
-          query: {
-            token: accessToken,
-          },
-        });
-        this.socket?.on('connect', () => {
-          this.establishConnection();
-          this.listenToNotifications();
-        });
+    this.accesssToken$.subscribe((accessToken) => { // want to make sure i want to connect to sockets 1 time, when user is logged in
+      if (!accessToken) {
+        this.gotToken.set(false);
+        return;
+      }
+      if (this.gotToken()) {
+        return;
+      }
+      this.gotToken.set(true);
+      this.socket = io(environment.wsURL + '/user', {
+        forceNew: true,
+        reconnection: true,
+        reconnectionAttempts: 5,
+        reconnectionDelay: 2000,
+        reconnectionDelayMax: 5000,
+        timeout: 10000,
+        autoConnect: true,
+        transports: ['websocket', 'polling'],
+        query: {
+          token: accessToken,
+        },
       });
+      this.socket?.on('connect', () => {
+        this.establishConnection();
+        this.listenToNotifications();
+      });
+    });
   }
 
   establishConnection() {

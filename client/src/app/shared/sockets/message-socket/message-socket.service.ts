@@ -28,38 +28,41 @@ export class MessageSocketService {
   private readonly friendListIDs = this.store.selectSignal(
     contactsFeature?.friendListIDs
   );
-
+  private readonly gotToken = signal(false);
   private readonly accesssToken$ = this.store.select(
     authFeature?.selectAccessToken
   );
   constructor() {
-    this.accesssToken$
-      .pipe(
-        filter((res) => (res ? true : false))
-        // take(1)
-      )
-      .subscribe((res) => {
-        if (this.socket) this.disconnect();
-        this.socket = io(environment.wsURL + '/message', {
-          forceNew: true,
-          reconnection: true,
-          reconnectionAttempts: 5,
-          reconnectionDelay: 2000,
-          reconnectionDelayMax: 5000,
-          timeout: 10000,
-          autoConnect: true,
-          transports: ['websocket', 'polling'],
-          query: {
-            token: res,
-          },
-        });
-
-        this.socket?.on('connect', () => {
-          this.listenForMessages();
-          this.listenForTyping();
-          this.listenForMessageUpdates();
-        });
+    this.accesssToken$.subscribe((accessToken) => {
+      if (!accessToken) {
+        this.gotToken.set(false);
+        return;
+      }
+      if (this.gotToken()) {
+        return;
+      }
+      this.gotToken.set(true);
+      if (this.socket) this.disconnect();
+      this.socket = io(environment.wsURL + '/message', {
+        forceNew: true,
+        reconnection: true,
+        reconnectionAttempts: 5,
+        reconnectionDelay: 2000,
+        reconnectionDelayMax: 5000,
+        timeout: 10000,
+        autoConnect: true,
+        transports: ['websocket', 'polling'],
+        query: {
+          token: accessToken,
+        },
       });
+
+      this.socket?.on('connect', () => {
+        this.listenForMessages();
+        this.listenForTyping();
+        this.listenForMessageUpdates();
+      });
+    });
 
     effect(() => {
       const friendListIDs = this.friendListIDs();

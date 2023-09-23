@@ -5,10 +5,7 @@ import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { API } from 'src/app/shared/utils/api.endpoints';
 import { userActions } from './user.action';
 import { EditProfileStore } from 'src/app/sections/user/components/profile/components/profile-edit/store/edit-profile.store';
-import { Store } from '@ngrx/store';
-import { UserSocketService } from 'src/app/shared/sockets/user-socket/user-socket.service';
-import { MessageSocketService } from 'src/app/shared/sockets/message-socket/message-socket.service';
-import { authActions } from '../auth/auth.action';
+import { Store } from '@ngrx/store';import { authActions } from '../auth/auth.action';
 import { contactsActions } from '../contacts/contacts.action';
 import { channelsActions } from '../channels/channels.action';
 import { onlineFriendsActions } from '../online-friends/online-friends.action';
@@ -103,14 +100,10 @@ export const logout = createEffect(
     actions$ = inject(Actions),
     store = inject(Store),
     router = inject(Router),
-    userSocket = inject(UserSocketService),
-    messageSocket = inject(MessageSocketService)
   ) => {
     return actions$.pipe(
       ofType(userActions.logout),
       tap(() => {
-        userSocket.disconnect();
-        messageSocket.disconnect();
         store.dispatch(authActions.resetState());
         store.dispatch(contactsActions.resetState());
         store.dispatch(channelsActions.resetState());

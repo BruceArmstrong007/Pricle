@@ -15,8 +15,6 @@ import { contactsActions } from '../contacts/contacts.action';
 import { channelsActions } from '../channels/channels.action';
 import { onlineFriendsActions } from '../online-friends/online-friends.action';
 import { userActions } from '../user/user.action';
-import { MessageSocketService } from 'src/app/shared/sockets/message-socket/message-socket.service';
-import { UserSocketService } from 'src/app/shared/sockets/user-socket/user-socket.service';
 
 export const login = createEffect(
   (
@@ -203,15 +201,11 @@ export const logout = createEffect(
   (
     actions$ = inject(Actions),
     store = inject(Store),
-    router = inject(Router),
-    userSocket = inject(UserSocketService),
-    messageSocket = inject(MessageSocketService)
+    router = inject(Router)
   ) => {
     return actions$.pipe(
       ofType(authActions.logout),
       tap(() => {
-        userSocket.disconnect();
-        messageSocket.disconnect();
         store.dispatch(authActions.resetState());
         store.dispatch(contactsActions.resetState());
         store.dispatch(channelsActions.resetState());
