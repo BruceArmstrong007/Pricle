@@ -8,6 +8,6 @@ export const userGuard: CanActivateFn = () => {
   if (refreshToken) {
     return true;
   }
-  router.navigateByUrl(Routes.Home);
+  router.navigateByUrl(Routes.Auth.Root);
   return false;
 };
