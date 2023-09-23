@@ -18,6 +18,8 @@ Server-Micro (many commits behind server-mono) - Microservices Server - NestJS, 
 Part1 - 1hr:16min https://screenrec.com/share/y9dxSmEBl5 </br>
 Part2 - 16min https://screenrec.com/share/bUPcyXB2mZ
 
-# Note
-did fix bugs mentioned in the video , let me know if you found any as well also,
-let me know of better implementation or things u think i could have done better (please forget UI xD)
+# Bugs in that video that are fixed
+1.) Logout websocket disconnection - done
+2.) Vertification url link updated
+3.) Deleting account will refresh its contact's contacts in client
+
