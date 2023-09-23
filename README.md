@@ -16,10 +16,9 @@ Server-Micro (many commits behind server-mono) - Microservices Server - NestJS, 
 
 # Project Description Video
 Part1 - 1hr:16min https://screenrec.com/share/y9dxSmEBl5 </br>
-Part2 - 16min https://screenrec.com/share/bUPcyXB2mZ
-
-# Bugs in that video that are fixed
-1.) Logout websocket disconnection - done
-2.) Vertification url link updated
-3.) Deleting account will refresh its contact's contacts in client
+Part2 - 16min https://screenrec.com/share/bUPcyXB2mZ </br>
+Bugs in that video that are fixed
+1.) Logout websocket disconnection - done </br>
+2.) Vertification url link updated </br>
+3.) Deleting account will refresh its contact's contacts in client </br>
 
