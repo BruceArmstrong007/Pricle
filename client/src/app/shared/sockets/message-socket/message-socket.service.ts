@@ -1,4 +1,4 @@
-import { Injectable, effect, inject } from '@angular/core';
+import { Injectable, effect, inject, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { filter, take } from 'rxjs';
 import { Socket, io } from 'socket.io-client';
