@@ -130,6 +130,8 @@ export class UserSocketService {
         break;
       case 'remove-contact':
         break;
+        case 'account-deleted':
+          break;
     }
   }
 

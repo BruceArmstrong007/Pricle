@@ -235,6 +235,8 @@ export class ContactService {
       }
     });
     for (let i = 0; i < contactIDs.length; i++) {
+      // notify contact
+      await this.notifyUsers('account-deleted', userID, contactIDs[i]);
       const roomID = this.chatRepository.generateRoomIDs(userID, contactIDs[i]);
       await this.chatRepository.jsonDel(`rooms:${roomID}`);
     }
