@@ -12,7 +12,6 @@ import { authFeature } from 'src/app/stores/auth/auth.reducer';
 import { ApiService } from '../services/api/api.service';
 import { API } from '../utils/api.endpoints';
 import { authActions } from 'src/app/stores/auth/auth.action';
-import { userActions } from 'src/app/stores/user/user.action';
 import { Router } from '@angular/router';
 import { Routes } from '../utils/client.routes';
 
