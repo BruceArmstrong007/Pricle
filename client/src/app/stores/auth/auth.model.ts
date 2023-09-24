@@ -1,7 +1,6 @@
 export interface AuthState {
   isLoading: boolean;
   accessToken: string | null;
-  refreshToken: string | null;
 }
 
 export interface AuthSuccess {

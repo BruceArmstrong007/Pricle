@@ -24,6 +24,7 @@ import { RegisterStore } from './sections/auth/components/register/store/registe
 import { VerifyAccountStore } from './sections/auth/components/verify-account/store/verify-account.store';
 import { userFeature } from './stores/user/user.reducer';
 import { contactsFeature } from './stores/contacts/contacts.reducer';
+import { CookieService } from 'ngx-cookie-service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,6 +32,7 @@ export const appConfig: ApplicationConfig = {
     DialogService,
     LoginStore,
     ResetPasswordStore,
+    CookieService,
     VerifyAccountStore,
     RegisterStore,
     provideRouter(routes),
@@ -48,6 +50,9 @@ export const appConfig: ApplicationConfig = {
     provideRouterStore({ serializer: CustomRouterStateSerializer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
-    importProvidersFrom(HttpClientModule, BrowserAnimationsModule),
+    importProvidersFrom(
+      HttpClientModule,
+      BrowserAnimationsModule,
+    ),
   ],
 };

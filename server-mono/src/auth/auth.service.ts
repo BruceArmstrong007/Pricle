@@ -17,6 +17,7 @@ import { UserService } from '../user/user.service';
 import { MailService } from './mail/mail.service';
 import { CurrentUserType, TokenType } from '@app/common';
 import { Inject } from '@nestjs/common';
+import { Response } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -27,7 +28,7 @@ export class AuthService {
     private readonly mailService: MailService,
   ) {}
 
-  async login(user: User) {
+  async login(user: User, response: Response) {
     if (!user?.verified) {
       throw new BadRequestException("User's email is not verified.");
     }
@@ -37,7 +38,14 @@ export class AuthService {
       email: user.email,
       verified: user.verified,
     };
-    return await this.authRepository.generateJWT(payload);
+    const { accessToken, refreshToken } =
+      await this.authRepository.generateJWT(payload);
+    response.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: true,
+    });
+    response.cookie('isLoggedIn', true);
+    return { accessToken };
   }
 
   async register(body: Register) {

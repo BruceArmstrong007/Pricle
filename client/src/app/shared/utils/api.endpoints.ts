@@ -1,7 +1,7 @@
 export const API = {
   LOGIN: { url: '/auth/login', method: 'POST' },
   REGISTER: { url: '/auth/register', method: 'POST' },
-  REFRESH: { url: '/auth/refresh', method: 'POST' },
+  REFRESH: { url: '/auth/refresh', method: 'GET' },
   VERIFY_EMAIL_LINK: {
     url: '/auth/verify-email-link',
     method: 'POST',

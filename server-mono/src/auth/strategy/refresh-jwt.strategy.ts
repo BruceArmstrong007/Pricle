@@ -4,11 +4,14 @@ import { ConfigService } from '@nestjs/config';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 
 @Injectable()
-export class RefreshJwtStrategy extends PassportStrategy(Strategy, 'refresh'){
-
+export class RefreshJwtStrategy extends PassportStrategy(Strategy, 'refresh') {
   constructor(configService: ConfigService) {
     super({
-      jwtFromRequest: ExtractJwt.fromBodyField('refresh'),
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (req) => {
+          return req.cookies.refreshToken;
+        },
+      ]),
       ignoreExpiration: false,
       secretOrKey: configService.get<string>('JWT_SECRET'),
     });
@@ -19,5 +22,4 @@ export class RefreshJwtStrategy extends PassportStrategy(Strategy, 'refresh'){
       throw new UnauthorizedException('User is not verified.');
     return payload;
   }
-
 }

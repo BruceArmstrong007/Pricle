@@ -12,6 +12,7 @@ import { Inject } from '@nestjs/common';
 import { UploadService } from '../upload/upload.service';
 import { CurrentUserType } from '@app/common';
 import { AuthService } from '../auth/auth.service';
+import { Response } from 'express';
 
 @Injectable()
 export class UserService {
@@ -133,6 +134,12 @@ export class UserService {
 
   async getUser(contactID: string) {
     return await this.userRepository.findByID(contactID);
+  }
+
+  async logout(response: Response) {
+    response.clearCookie('refreshToken');
+    response.clearCookie('isLoggedIn');
+    return { message: 'Logged out successfully' };
   }
 
   private async userExist(request: Partial<User>) {

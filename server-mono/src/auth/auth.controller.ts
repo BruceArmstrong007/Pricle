@@ -1,4 +1,13 @@
-import { Body, Controller, Post, UseFilters, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  Res,
+  UseFilters,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiExceptionFilter, CurrentUser, CurrentUserType } from '@app/common';
 import { LocalAuthGuard } from './guard/local-auth.guard';
@@ -11,6 +20,7 @@ import {
   VerifyEmailLink,
 } from './dto/auth.request';
 import { RefreshJwtGuard } from './guard/refresh-jwt.guard';
+import { Response } from 'express';
 
 @Controller('auth')
 @UseFilters(new ApiExceptionFilter())
@@ -19,8 +29,11 @@ export class AuthController {
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
-  async login(@CurrentUser() user: User) {
-    return await this.authService.login(user);
+  async login(
+    @Res({ passthrough: true }) response: Response,
+    @CurrentUser() user: User,
+  ) {
+    return await this.authService.login(user, response);
   }
 
   @Post('register')
@@ -48,7 +61,7 @@ export class AuthController {
     return await this.authService.resetPassword(payload);
   }
 
-  @Post('refresh')
+  @Get('refresh')
   @UseGuards(RefreshJwtGuard)
   async refreshToken(@CurrentUser() user: CurrentUserType) {
     return await this.authService.refresh(user);

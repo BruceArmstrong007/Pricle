@@ -5,7 +5,6 @@ import { authActions } from './auth.action';
 const initialState: AuthState = {
   isLoading: false,
   accessToken: null,
-  refreshToken: localStorage.getItem('refresh'),
 };
 
 export const authFeature = createFeature({
@@ -48,7 +47,6 @@ export const authFeature = createFeature({
         ...state,
         isLoading: false,
         accessToken: action.accessToken,
-        refreshToken: action.refreshToken,
       })
     ),
     on(

@@ -116,7 +116,6 @@ export const logout = createEffect(
         store.dispatch(channelsActions.resetState());
         store.dispatch(onlineFriendsActions.resetState());
         store.dispatch(userActions.resetState());
-        localStorage.removeItem('refresh');
         router.navigateByUrl(Routes.Home);
       })
     );

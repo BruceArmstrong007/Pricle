@@ -32,9 +32,6 @@ export class UserComponent {
   private readonly accesssToken = this.store.selectSignal(
     authFeature?.selectAccessToken
   );
-  private readonly refreshToken = this.store.selectSignal(
-    authFeature?.selectRefreshToken
-  );
 
   constructor() {
     const online = setInterval(() => {
@@ -42,10 +39,7 @@ export class UserComponent {
         clearInterval(online);
         return;
       }
-      if (!this.refreshToken()) return;
-        this.apiService.request(API.REFRESH, {
-          refresh: this.refreshToken(),
-        });
+        this.apiService.request(API.REFRESH);
     }, 4000);
   }
 }

@@ -76,7 +76,7 @@ export class UserSocketService {
       }
       this.userOnline();
       this.getOnlineFriends();
-    }, 2000);
+    }, 1000);
   }
 
   // Set user as online as a ttl cache in redis

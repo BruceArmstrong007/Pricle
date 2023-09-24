@@ -1,11 +1,15 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { Routes } from '../utils/client.routes';
+import { CookieService } from 'ngx-cookie-service';
 
 export const userGuard: CanActivateFn = () => {
   const router = inject(Router);
-  const refreshToken = localStorage.getItem('refresh');
-  if (refreshToken) {
+  const cookieService = inject(CookieService);
+  const isLoggedIn = cookieService.get('isLoggedIn');
+  console.log(isLoggedIn);
+
+  if (isLoggedIn == 'true') {
     return true;
   }
   router.navigateByUrl(Routes.Auth.Root);

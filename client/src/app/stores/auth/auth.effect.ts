@@ -15,13 +15,15 @@ import { contactsActions } from '../contacts/contacts.action';
 import { channelsActions } from '../channels/channels.action';
 import { onlineFriendsActions } from '../online-friends/online-friends.action';
 import { userActions } from '../user/user.action';
+import { CookieService } from 'ngx-cookie-service';
 
 export const login = createEffect(
   (
     actions$ = inject(Actions),
     apiService = inject(ApiService),
     loginStore = inject(LoginStore),
-    router = inject(Router)
+    router = inject(Router),
+    cookieService = inject(CookieService)
   ) => {
     return actions$.pipe(
       ofType(authActions.login),
@@ -29,12 +31,20 @@ export const login = createEffect(
         loginStore.Login();
         return apiService.request(API.LOGIN, request).pipe(
           map((response: any) => {
+
+            const refreshtoken = cookieService.get('refreshToken');
+            console.log(refreshtoken,cookieService.getAll());
+
+            response = { ...response, refreshtoken };
+            console.log(response);
+
             loginStore.LoginSuccess(response);
-            localStorage.setItem('refresh', response?.refreshToken);
             router.navigateByUrl(Routes.User.Root);
             return authActions.loginSuccess(response);
           }),
           catchError(({ error }) => {
+            console.log(error);
+
             loginStore.LoginFailure(error);
             return of(authActions.loginFailure());
           })
@@ -211,7 +221,6 @@ export const logout = createEffect(
         store.dispatch(channelsActions.resetState());
         store.dispatch(onlineFriendsActions.resetState());
         store.dispatch(userActions.resetState());
-        localStorage.removeItem('refresh');
         router.navigateByUrl(Routes.Home);
       })
     );
@@ -220,3 +229,5 @@ export const logout = createEffect(
     functional: true,
   }
 );
+
+

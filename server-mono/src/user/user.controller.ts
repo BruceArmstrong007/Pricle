@@ -8,6 +8,7 @@ import {
   Body,
   Query,
   BadGatewayException,
+  Res,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiExceptionFilter, CurrentUser, CurrentUserType } from '@app/common';
@@ -18,6 +19,7 @@ import {
   ResetPassword,
   UpdateUser,
 } from './dto/user.request';
+import { Response } from 'express';
 
 @Controller('user')
 @UseGuards(JwtAuthGuard)
@@ -80,5 +82,10 @@ export class UserController {
       body?.email,
       body?.token,
     );
+  }
+
+  @Get('logout')
+  async logout(@Res() response: Response) {
+    return await this.userService.logout(response);
   }
 }

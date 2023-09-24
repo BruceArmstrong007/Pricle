@@ -10,7 +10,6 @@ import { authFeature } from '../../stores/auth/auth.reducer';
 import { contactsActions } from 'src/app/stores/contacts/contacts.action';
 
 export const tokenResolver: ResolveFn<boolean> = () => {
-  const refreshToken = localStorage.getItem('refresh');
   const apiService = inject(ApiService);
   const store = inject(Store);
   const accessToken = store.selectSignal(authFeature.selectAccessToken);
@@ -20,7 +19,7 @@ export const tokenResolver: ResolveFn<boolean> = () => {
     return true;
   }
 
-  return apiService.request(API.REFRESH, { refresh: refreshToken }).pipe(
+  return apiService.request(API.REFRESH).pipe(
     map((res: any) => {
       if (res?.accessToken) {
         store.dispatch(

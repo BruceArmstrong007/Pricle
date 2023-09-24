@@ -20,7 +20,7 @@ export class RequestInterceptor implements HttpInterceptor {
   private readonly store = inject(Store);
   private readonly router = inject(Router);
   private readonly token = this.store.selectSignal(
-    authFeature.selectRefreshToken
+    authFeature.selectAccessToken
   );
   private readonly apiService = inject(ApiService);
 
@@ -46,9 +46,7 @@ export class RequestInterceptor implements HttpInterceptor {
 
     if (response.status === 401 && this.token()) {
       return this.apiService
-        .request(API.REFRESH, {
-          refresh: this.token(),
-        })
+        .request(API.REFRESH)
         .pipe(
           tap((res: any) => {
             this.store.dispatch(
