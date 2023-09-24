@@ -14,11 +14,7 @@ Server-Micro (many commits behind server-mono) - Microservices Server - NestJS, 
  Both server-mono and server-micro API responses from client are all same, the endpoints might change, </br>
  you can refer the postman file in the respective directories in this repo </br>
 
-# Project Description Video
+# Project Description Video </br>
+Take 2 Single Video 2hrs:16min (realised that the issues i have gone through related to sockets are due to hosting API(server-mono) in free tier in adoptable.io) - https://screenrec.com/share/LlvSETRI5W </br>
 Part1 - 1hr:16min https://screenrec.com/share/y9dxSmEBl5 </br>
 Part2 - 16min https://screenrec.com/share/bUPcyXB2mZ </br>
-Bugs in that video that are fixed
-1.) Logout websocket disconnection - done </br>
-2.) Vertification url link updated </br>
-3.) Deleting account will refresh its contact's contacts in client </br>
-
