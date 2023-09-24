@@ -32,6 +32,12 @@ export class UserController {
     return await this.userService.userProfile(user);
   }
 
+  
+  @Get('logout')
+  async logout(@Res() response: Response) {
+    await this.userService.logout(response);
+  }
+
   @Get('search-users')
   async searchUsers(
     @Query('name') name: string,
@@ -84,8 +90,4 @@ export class UserController {
     );
   }
 
-  @Get('logout')
-  async logout(@Res() response: Response) {
-    return await this.userService.logout(response);
-  }
 }

@@ -29,6 +29,7 @@ export const API = {
   CHANGEEMAILLINK: { url: '/user/change-email-link', method: 'POST' },
   CHANGEEMAIL: { url: '/user/change-email', method: 'POST' },
   DELETEUSER: { url: '/user/delete', method: 'DELETE' },
+  LOGOUT: { url: '/user/logout', method: 'GET' },
 };
 
 export type APIEndpoint = { url: string; method: string };

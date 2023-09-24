@@ -16,6 +16,7 @@ import { ChangePasswordStore } from 'src/app/sections/user/components/settings/c
 import { ChangeEmailStore } from 'src/app/sections/user/components/settings/components/account/components/change-email/store/change-email.store';
 import { MessageSocketService } from 'src/app/shared/sockets/message-socket/message-socket.service';
 import { UserSocketService } from 'src/app/shared/sockets/user-socket/user-socket.service';
+import { CookieService } from 'ngx-cookie-service';
 
 export const profile = createEffect(
   (actions$ = inject(Actions), apiService = inject(ApiService)) => {
@@ -104,25 +105,36 @@ export const logout = createEffect(
     store = inject(Store),
     router = inject(Router),
     messageSocket = inject(MessageSocketService),
-    userSocket = inject(UserSocketService)
+    userSocket = inject(UserSocketService),
+    apiService = inject(ApiService),
+    cookieService = inject(CookieService),
   ) => {
     return actions$.pipe(
       ofType(userActions.logout),
-      tap(() => {
-        messageSocket.disconnect();
-        userSocket.disconnect();
-        store.dispatch(authActions.resetState());
-        store.dispatch(contactsActions.resetState());
-        store.dispatch(channelsActions.resetState());
-        store.dispatch(onlineFriendsActions.resetState());
-        store.dispatch(userActions.resetState());
-        router.navigateByUrl(Routes.Home);
+      exhaustMap(() => {
+        return apiService.request(API.LOGOUT).pipe(
+          map(() => {
+            messageSocket.disconnect();
+            userSocket.disconnect();
+            store.dispatch(authActions.resetState());
+            store.dispatch(contactsActions.resetState());
+            store.dispatch(channelsActions.resetState());
+            store.dispatch(onlineFriendsActions.resetState());
+            store.dispatch(userActions.resetState());
+            cookieService.delete('isLoggedIn');
+            router.navigateByUrl(Routes.Home);
+            return userActions.logoutSuccess();
+          }),
+          catchError(({ error }) => {
+            return of(userActions.logoutFailure());
+          })
+        );
       })
+
     );
   },
   {
     functional: true,
-    dispatch: false,
   }
 );
 

@@ -7,8 +7,6 @@ export const userGuard: CanActivateFn = () => {
   const router = inject(Router);
   const cookieService = inject(CookieService);
   const isLoggedIn = cookieService.get('isLoggedIn');
-  console.log(isLoggedIn);
-
   if (isLoggedIn == 'true') {
     return true;
   }

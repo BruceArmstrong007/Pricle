@@ -14,6 +14,8 @@ export const userActions = createActionGroup({
     ProfileSuccess: props<UserDetails>(),
     ProfileFailure: emptyProps(),
     Logout: emptyProps(),
+    LogoutSuccess: emptyProps(),
+    LogoutFailure: emptyProps(),
 
     UpdateUser: props<{
       request: Pick<UserDetails, 'name' & 'bio' & 'userame'>;

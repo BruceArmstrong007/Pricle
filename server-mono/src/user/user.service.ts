@@ -137,9 +137,9 @@ export class UserService {
   }
 
   async logout(response: Response) {
-    response.clearCookie('refreshToken');
-    response.clearCookie('isLoggedIn');
-    return { message: 'Logged out successfully' };
+    await response.clearCookie('refreshToken');
+    await response.clearCookie('isLoggedIn');
+    response.status(200).json({ message: 'Logout successful' });
   }
 
   private async userExist(request: Partial<User>) {
