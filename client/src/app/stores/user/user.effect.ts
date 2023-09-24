@@ -107,7 +107,6 @@ export const logout = createEffect(
     messageSocket = inject(MessageSocketService),
     userSocket = inject(UserSocketService),
     apiService = inject(ApiService),
-    cookieService = inject(CookieService),
   ) => {
     return actions$.pipe(
       ofType(userActions.logout),
@@ -121,7 +120,7 @@ export const logout = createEffect(
             store.dispatch(channelsActions.resetState());
             store.dispatch(onlineFriendsActions.resetState());
             store.dispatch(userActions.resetState());
-            cookieService.delete('isLoggedIn');
+            localStorage.removeItem('isLoggedIn');
             router.navigateByUrl(Routes.Home);
             return userActions.logoutSuccess();
           }),

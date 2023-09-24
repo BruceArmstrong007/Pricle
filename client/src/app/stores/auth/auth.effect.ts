@@ -33,6 +33,7 @@ export const login = createEffect(
           map((response: any) => {
             const refreshtoken = cookieService.get('refreshToken');
             response = { ...response, refreshtoken };
+            localStorage.setItem('isLoggedIn', 'true');
             loginStore.LoginSuccess(response);
             router.navigateByUrl(Routes.User.Root);
             return authActions.loginSuccess(response);
@@ -205,7 +206,6 @@ export const logout = createEffect(
     actions$ = inject(Actions),
     store = inject(Store),
     router = inject(Router),
-    cookieService = inject(CookieService)
   ) => {
     return actions$.pipe(
       ofType(authActions.logout),
@@ -215,7 +215,7 @@ export const logout = createEffect(
         store.dispatch(channelsActions.resetState());
         store.dispatch(onlineFriendsActions.resetState());
         store.dispatch(userActions.resetState());
-        cookieService.delete('isLoggedIn');
+        localStorage.removeItem('isLoggedIn');
         router.navigateByUrl(Routes.Home);
       })
     );
@@ -224,5 +224,3 @@ export const logout = createEffect(
     functional: true,
   }
 );
-
-
