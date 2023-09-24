@@ -48,7 +48,7 @@ export const appConfig: ApplicationConfig = {
     }),
     provideEffects([authEffects]),
     provideRouterStore({ serializer: CustomRouterStateSerializer }),
-    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    (isDevMode() ? provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }) : []),
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
     importProvidersFrom(
       HttpClientModule,
