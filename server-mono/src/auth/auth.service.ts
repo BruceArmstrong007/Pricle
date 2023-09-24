@@ -43,8 +43,11 @@ export class AuthService {
     response.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: true,
+      sameSite: 'none',
     });
-    response.cookie('isLoggedIn', true);
+    response.cookie('isLoggedIn', true, {
+      sameSite: 'none',
+    });
     response.status(200).json({ accessToken });
   }
 
