@@ -26,8 +26,6 @@ export class ApiService {
     if (params?.queryParams) {
       url += '?' + params?.queryParams;
     }
-    console.log(endpoint);
-
     switch (endpoint.method) {
       case 'POST':
         return this.http.post(url, body, requestOptions);
