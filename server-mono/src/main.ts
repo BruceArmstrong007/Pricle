@@ -10,7 +10,10 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   app.enableCors({
     credentials: true,
-    origin: [configService.get('CLIENT_URI1')],
+    origin: [
+      configService.get('CLIENT_URI1'),
+      configService.get('CLIENT_URI2'),
+    ],
   });
   app.use(cookieParser());
   app.useGlobalPipes(

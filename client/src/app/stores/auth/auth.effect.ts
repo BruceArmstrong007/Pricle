@@ -31,13 +31,8 @@ export const login = createEffect(
         loginStore.Login();
         return apiService.request(API.LOGIN, request).pipe(
           map((response: any) => {
-
             const refreshtoken = cookieService.get('refreshToken');
-            console.log(refreshtoken,cookieService.getAll());
-
             response = { ...response, refreshtoken };
-            console.log(response);
-
             loginStore.LoginSuccess(response);
             router.navigateByUrl(Routes.User.Root);
             return authActions.loginSuccess(response);
