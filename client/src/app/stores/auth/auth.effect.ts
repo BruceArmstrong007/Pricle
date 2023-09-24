@@ -38,8 +38,6 @@ export const login = createEffect(
             return authActions.loginSuccess(response);
           }),
           catchError(({ error }) => {
-            console.log(error);
-
             loginStore.LoginFailure(error);
             return of(authActions.loginFailure());
           })

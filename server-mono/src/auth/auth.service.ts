@@ -45,7 +45,7 @@ export class AuthService {
       secure: true,
     });
     response.cookie('isLoggedIn', true);
-    return { accessToken };
+    response.status(200).json({ accessToken });
   }
 
   async register(body: Register) {
