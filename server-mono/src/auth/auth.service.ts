@@ -47,7 +47,7 @@ export class AuthService {
     });
     response.cookie('isLoggedIn', true, {
       sameSite: 'none',
-      secure: false,
+      secure: true,
     });
     response.status(200).json({ accessToken });
   }
